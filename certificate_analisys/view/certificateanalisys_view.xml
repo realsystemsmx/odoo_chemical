@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	=============================
+	Add Search, Tree, Form Views to Certificate Analisys 
+	=============================
+
+
+        <record id="certificate_analisys_search_form_view" model="ir.ui.view">
+            <field name="name">certificate_analisys.search.form</field>
+            <field name="model">certificate.analisys</field>
+            <field name="arch" type="xml">
+                <search string="Description">					
+                   <field name="description" string="Description" filter_domain="['|',('description','ilike',self)]"/>
+                   <separator/>
+                    <group  expand='0' string='Group by...'>
+                       <filter string='Date' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'certificate_date'}"/>
+                       <filter string='Product' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'product_id'}"/>
+                       <filter string='Lot Number' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'lot_id'}"/>                       
+                    </group>
+                </search>
+            </field>
+        </record>
+
+<!--        
+       <record id="certificate_analisys_form_view" model="ir.ui.view">
+            <field name="name">certificate_analisys.form</field>
+            <field name="model">certificate.analisys</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Certificate Analisys" version="7.0">
+                    <sheet>
+					    <field name="description"  invisible="True" />
+						<field name="product_id"   />
+						<field name="certificate_date"  />
+						<field name="lot_id"  />                        				  
+                        <notebook>
+                            <page string="Certificate Detail">
+								<group>
+                                        <field name="line_ids" nolabel="1" >
+											<form string="Specification" version="7.0">
+												<sheet>
+                                                     <field name="specification_id" class="oe_inline" domain="[('product_id','=',product_id)]" />
+													 <field name="result" class="oe_inline" />
+												</sheet>
+											</form>
+											<tree  string="Specifications" editable="bottom" >
+												<field name="specification_id" />
+												<field name="result"/>
+											</tree>											   
+										</field>	                            
+                                </group>        
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+              
+            </field>
+        </record>
+-->
+
+<record id="certificate_analisys_form_view" model="ir.ui.view">
+            <field name="name">certificate_analisys.form</field>
+            <field name="model">certificate.analisys</field>
+            <field name="view_type">form</field>
+            <field name="arch" type="xml">
+                <form string="Certificate Analisys">
+					    <field name="description"  invisible="True" />
+						<field name="product_id"   />
+						<field name="certificate_date"  />
+						<field name="lot_id"  />                        				  
+                        <notebook>
+                            <page string="Certificate Detail">
+								<group>
+                                        <field name="line_ids" nolabel="1" >
+											<form string="Specification" >
+                                                     <field name="specification_id"  domain="[('product_id','=',product_id)]" />
+													 <field name="result"  />
+											</form>
+											<tree  string="Specifications" editable="bottom" >
+												<field name="specification_id" />
+												<field name="result"/>
+											</tree>											   
+										</field>	                            
+                                </group>        
+                            </page>
+                        </notebook>
+                </form>
+              
+            </field>
+        </record>
+
+    <record id="certificate_analisys_tree_view" model="ir.ui.view">
+            <field name="name">certificate_analisys.tree</field>
+            <field name="model">certificate.analisys</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Certificate Analisys" >
+                    <field name="certificate_date"/>
+                    <field name="description"/>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                </tree>
+            </field>
+    </record>
+
+
+
+	=============================
+	Add Action  to Certificate Analisys 
+	=============================
+
+        <record id="certificate_analisys_action" model="ir.actions.act_window">
+            <field name="name">Certificate of Analisys</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">certificate.analisys</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="certificate_analisys_tree_view"/>
+            <field name="search_view_id" ref="certificate_analisys_search_form_view"/>
+            <field name="help" type="html">
+			  <p class="oe_view_nocontent_create">
+                Click to define a new Certificate Analisys.
+              </p>
+              <p>
+                Here is a list of all certificates of analisys of your products classified by date. You
+                can click a date to get the list of all certificates linked to
+                this date.
+              </p>
+            </field>
+        </record>
+
+
+	=============================
+	Add Action Menu to Certificate Analisys
+	=============================
+         <menuitem
+            action="certificate_analisys_action"
+            id="menu_certificate_analisys"
+            parent="base.menu_product"
+            sequence="3" groups="base.group_no_one"/>
+
+
+
+	=============================
+	Add Search, Tree, Form Views to Determinations 
+	=============================
+
+        <record id="certificate_determination_search_form_view" model="ir.ui.view">
+            <field name="name">certificate_determination.search.form</field>
+            <field name="model">certificate.determination</field>
+            <field name="arch" type="xml">
+                <search string="Determination">					
+                   <field name="determination" string="Determination" filter_domain="['|',('determination','ilike',self)]"/>
+                   <separator/>
+                </search>
+            </field>
+        </record>
+
+<!--
+       <record id="certificate_determination_form_view" model="ir.ui.view">
+            <field name="name">certificate_determination.form</field>
+            <field name="model">certificate.determination</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Determination" version="7.0">
+                    <sheet>
+						<field name="determination"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+-->
+
+       <record id="certificate_determination_form_view" model="ir.ui.view">
+            <field name="name">certificate_determination.form</field>
+            <field name="model">certificate.determination</field>
+            <field eval="7" name="priority"/>
+            <field name="view_type">form</field>
+            <field name="arch" type="xml">
+                <form string="Determination" >
+						<field name="determination"/>
+                </form>
+            </field>
+        </record>
+
+
+    <record id="certificate_determination_tree_view" model="ir.ui.view">
+            <field name="name">certificate_determination.tree</field>
+            <field name="model">certificate.determination</field>
+            <field name="view_type">tree</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <tree  string="Determinations">
+                    <field name="determination"/>
+                </tree>
+            </field>
+    </record>
+
+
+
+	=============================
+	Add Action  to Certificate Determination 
+	=============================
+
+        <record id="certificate_determination_action" model="ir.actions.act_window">
+            <field name="name">Certificate Determinations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">certificate.determination</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="certificate_determination_tree_view"/>
+            <field name="search_view_id" ref="certificate_determination_search_form_view"/>
+            <field name="help" type="html">
+			  <p class="oe_view_nocontent_create">
+                Click to define a new Determination.
+              </p>
+              <p>
+                Here is a list of all certificate determinations of your products.
+              </p>
+            </field>
+        </record>
+
+
+
+	=============================
+	Add Action Menu to Configuration of Certificate Determinations 
+	=============================
+
+		<menuitem action="certificate_determination_action" 
+		id="menu_product_certificate_determination_action" 
+		parent="base.menu_base_config" 
+		sequence="25" 
+		groups="base.group_no_one"/>
+
+
+
+
+
+	=============================
+	Add Search, Tree, Form Views to Specifications 
+	=============================
+
+        <record id="product_specification_search_form_view" model="ir.ui.view">
+            <field name="name">product_specification.search.form</field>
+            <field name="model">product.specification</field>
+            <field name="arch" type="xml">
+                <search string="Description">					
+                   <field name="description" string="Description" filter_domain="['|',('description','ilike',self)]"/>
+                   <separator/>
+                    <group  expand='0' string='Group by...'>
+                       <filter string='Product' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'product_id'}"/>
+                       <filter string='Determination' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'determination_id'}"/>                       
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+<!--
+       <record id="product_specification_form_view" model="ir.ui.view">
+            <field name="name">product_specification.form</field>
+            <field name="model">product.specification</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Product Specification" version="7.0">
+                    <sheet>
+						<field name="description" invisible="True" />
+						<field name="product_id" on_change="onchange_product_det_id(product_id, determination_id)" />
+						<field name="determination_id" on_change="onchange_product_det_id(product_id, determination_id)" />
+						<field name="limits"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+-->
+
+       <record id="product_specification_form_view" model="ir.ui.view">
+            <field name="name">product_specification.form</field>
+            <field name="model">product.specification</field>
+            <field name="view_type">form</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Product Specification" >
+                    
+						<field name="description" invisible="True" />
+						<field name="product_id" on_change="onchange_product_det_id(product_id, determination_id)" />
+						<field name="determination_id" on_change="onchange_product_det_id(product_id, determination_id)" />
+						<field name="limits"/>
+                    
+                </form>
+            </field>
+        </record>
+
+
+    <record id="product_specification_tree_view" model="ir.ui.view">
+            <field name="name">product_specification.tree</field>
+            <field name="model">product.specification</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <tree  string="Determinations">
+						<field name="description" invisible="True" />
+						<field name="product_id"  />
+						<field name="determination_id"  />
+						<field name="limits"/>
+                </tree>
+            </field>
+    </record>
+
+
+
+	=============================
+	Add Action  to Specifications 
+	=============================
+
+        <record id="product_specification_action" model="ir.actions.act_window">
+            <field name="name">Product Specifications</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.specification</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="product_specification_tree_view"/>
+            <field name="search_view_id" ref="product_specification_search_form_view"/>
+            <field name="help" type="html">
+			  <p class="oe_view_nocontent_create">
+                Click to define a new Product Specification.
+              </p>
+              <p>
+                Here is a list of all specifications of your products.
+              </p>
+            </field>
+        </record>
+
+
+
+	=============================
+	Add Action Menu to Configuration of Specifications 
+	=============================
+
+		<menuitem action="product_specification_action" 
+		id="menu_product_specification_action" 
+		parent="base.menu_base_config" 
+		sequence="30" 
+		groups="base.group_no_one"/>
+
+
+
+
+
+
+
+
+
+	=============================
+	Add Specifications to Product 
+	=============================
+ <!-- version 7
+ 		<record model="ir.ui.view" id="product_chemical_form7_view">
+                <field name="name">product.chemical.form7.view</field>
+                <field name="model">product.product</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="product.product_normal_form_view"/>
+                <field name="arch" type="xml">
+                  <xpath expr="/form/sheet/notebook/page[2]" position="after">  
+                      <page string="Specifications" attrs="{'invisible': [('type','=', 'service')]}" >
+						    <group>
+							<field name="specification_ids" nolabel="1" >
+								<form string="Specification" version="7.0">
+									<sheet>
+										<field name="product_id" invisible="True" />
+										<field name="determination_id" class="oe_inline" on_change="onchange_product_det_id(product_id, determination_id)" />
+										<field name="limits" class="oe_inline" />
+									</sheet>
+								</form>
+								<tree  string="Specifications" editable="bottom" >
+									<field name="determination_id"/>
+									<field name="limits"/>
+								</tree>	
+							</field>	
+							</group>               
+                       </page>
+                   </xpath>
+                </field>
+            </record>
+-->
+
+ 		<record model="ir.ui.view" id="product_chemical_form7_view">
+                <field name="name">product.chemical.form7.view</field>
+                <field name="model">product.product</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="product.product_normal_form_view"/>
+                <field name="arch" type="xml">
+                  <xpath expr="/form/notebook/page[1]" position="after">  
+                      <page string="Specifications"  >
+						    <group>
+							<field name="specification_ids" nolabel="1" >
+								<form string="Specification" >
+										<field name="product_id" invisible="True" />
+										<field name="determination_id"  on_change="onchange_product_det_id(product_id, determination_id)" />
+										<field name="limits"  />
+								</form>
+								<tree  string="Specifications"  >
+									<field name="determination_id"/>
+									<field name="limits"/>
+								</tree>	
+							</field>	
+							</group>               
+                       </page>
+                   </xpath>
+                </field>
+            </record>
+
+
+        </data>
+</openerp>
