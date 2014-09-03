@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title></title>
+    <style>
+body {background-color:white;}
+      
+div .logo {
+         background-color: #b8b8bc;
+         width: 100%;
+         padding: 25px;
+         border: 25px solid navy;
+         margin: 25px;
+        
+      }
+ 
+      
+div .partner_label {
+        position:absolute;
+        top: 45 px;
+        right:15 px; 
+      
+      
+      }
+      
+div .partner {
+      position:absolute;
+      top: 10 px;
+      right:15 px; 
+      
+      
+      }
+      
+div .dangerbluediv { 
+        position:absolute;
+        top: 30 px;
+        left:15 px; 
+        border:thin solid #000000; 
+      }
+
+div .dangerreddiv { 
+        position:absolute;
+        top: 30 px;
+        left:15 px; 
+        border:thin solid #000000; 
+      }
+
+div .dangeryellowdiv { 
+        position:absolute;
+        top: 30 px;
+        left:15 px; 
+        border:thin solid #000000; 
+      }
+
+      
+.danger_blue_label {
+   background-color : #0B0B61;
+   color:#FFFFFF;
+  
+}
+.danger_red_label {
+   background-color : #FF0000;
+   color:#FFFFFF;
+}
+
+.danger_yellow_label {
+   background-color : #FFFF00;
+}
+      
+.danger_blue_data {
+   background-color : #FFFFFF;
+   color:#000000;
+  
+}
+.danger_red_data {
+   background-color : #FFFFFF;
+   color:#000000;
+}
+
+.danger_yellow_data {
+   background-color : #FFFFFF;
+   color:#000000;
+}
+
+    
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <div style="height: 63px; width: 75px;" class="gbw_logo1">${helper.embed_image("jpg",company.logo,
+        width=100, height=100)}</div>
+      <div style="margin-left: 803px; width: 68px; margin-top: -61px;" class="tintas_finas">${helper.embed_image("jpg",company.logo,
+        width=100, height=100)}</div>
+      <div style="margin-left: 393px; width: 57px; margin-top: -59px; height: 55px;"
+        class="gbw_logo2">${helper.embed_image("jpg",company.logo, width=100,
+        height=100)}</div>
+    </div>
+    <div style="margin-left: 224px; width: 120px; margin-top: 19px;" class="partner_label">CLIENTE:</div>
+    <div style="margin-left: 334px; margin-top: -20px; height: 17px; width: 638px;"
+      class="partner"><span style="font-weight: bold;">${
+        data['form']['partner_name'] or '' }</span></div>
+    <div style="width: 406px;" class="product_name">
+      <h3>${ prodlot.name or ''}</h3>
+    </div>
+    <h1><span style="font-weight: bold;"> </span></h1>
+    <div style="margin-left: 454px; margin-top: -17px; width: 518px;" class="product_code">
+      <h3 style="margin-top: -47.2833px; height: 24px; margin-left: -19px;"><span
+          style="font-weight: bold;">${ prodlot.default_code or ''}</span></h3>
+    </div>
+    <div style="margin-top: 22px;" class="lot_number_label">LOTE =</div>
+    <div style="margin-left: 110px; width: 138px; margin-top: -18px;" class="lot_number">${
+      data['form']['lot_number'] or '' }</div>
+    <div style="margin-left: 396px; margin-top: -24px;" class="quantity_label">CANTIDAD
+      =</div>
+    <div style="margin-left: 566px; width: 138px; margin-top: -18px;" class="quantity">${
+      data['form']['quantity'] or '' }</div>
+    <div style="width: 251px; margin-top: 23px;" class="date_label">FECHA DE
+      PRODUCCION =</div>
+    <div style="margin-left: 245px; margin-top: -22px; width: 135px;" class="risklabel_date">${
+      data['form']['to_date'] or '' }</div>
+    <div style="margin-top: 24px; margin-left: 112px; width: 145px;" class="saleorder_label">PEDIDO
+      No. =</div>
+    <div style="margin-left: 243px; width: 136px; margin-top: -20px;" class="saleorder">${
+      data['form']['sale_order'] or '' }</div>
+    <div class="dangerbluediv">
+      <p style="width: 170px; margin-left: 385px; margin-top: -66px;" class="danger_blue_label">SALUD</p>
+    </div>
+    <div class="dangerreddiv">
+      <p style="width: 170px; margin-left: 385px;" class="danger_red_label">INFLAMABILIDAD</p>
+    </div>
+    <div class="dangeryellowdiv">
+      <p style="width: 170px; margin-left: 384px;" class="danger_yellow_label">REACTIVIDAD</p>
+    </div>
+    <div class="dangerbluedivdata">
+      <p style="width: 170px; margin-left: 566px; margin-top: -107px;" class="danger_blue_data">${
+        prodlot.danger_blue or ''}</p>
+    </div>
+    <div class="dangerreddivdata">
+      <p style="width: 170px; margin-left: 570px;" class="danger_red_data">${
+        prodlot.danger_red or ''}</p>
+    </div>
+    <div class="dangeryellowdata">
+      <p style="width: 170px; margin-left: 570px;" class="danger_yellow_data">${
+        prodlot.danger_yellow or ''}</p>
+    </div>
+  </body>
+</html>

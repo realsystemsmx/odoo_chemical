@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	=============================
+	Add fields to Product 
+	=============================
+ 
+ 		<record model="ir.ui.view" id="product_chemicalrisk_form_view">
+                <field name="name">product.chemicalrisk.form.view</field>
+                <field name="model">product.product</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="product.product_normal_form_view"/>
+                <field name="arch" type="xml">
+					
+<!-- version 7.0                  <xpath expr="/form/sheet/notebook/page[1]" position="after"> -->
+				<xpath expr="/form/notebook/page[1]" position="after">
+                      <page string="Security and Risk" attrs="{'invisible': [('type','=', 'service')]}" >
+						    <group>
+							<field name="cas_number" placeholder="CAS Numbrer..." />
+							</group>
+							<group rowspan="3" colspan="2" >
+								 <!-- <label string="Peligrosity Blue :" /> !-->
+								 <field name="danger_blue" class="danger_blue" nolabel="0"  />
+								 <!-- <label string="Peligrosity Red :" /> !-->
+								 <field name="danger_red"  class="danger_red" nolabel="0" />
+								 <!-- <label string="Peligrosity Yellow :" /> !-->
+								 <field name="danger_yellow" class="danger_yellow" nolabel="0" />
+								 <field name="danger_white" nolabel="0" />
+							</group>	
+							<button  name="%(action_risksticker_report_webkit)d" 
+								 string="Print Risk Sticker" 
+								 type="action" 
+								 help="Print a Risk Sticker"
+								 context="{'product_id' : active_id }" />
+							<group >
+								<html>
+									<table>
+										<tr>
+											<td rowspan="8" >
+									<img src="/risk_label_product/static/src/img/riesgo.png" />
+									       </td>
+									     </tr>  
+									       <tr><td>Codigo de riesgo:</td></tr>
+									<tr><td>4. EXTREMO</td></tr>
+									<tr><td>3. ALTO</td></tr>
+									<tr><td>2. MODERADO</td></tr>
+									<tr><td>1. LIGERO</td></tr>
+									<tr><td>0. INSIGNIFICANTE</td></tr>
+									<tr><td>*. PELIGRO CRONICO DE LA SALUD</td></tr>
+									 </table>
+								</html>			
+							</group>		
+                       
+                       </page>
+                   </xpath>
+                </field>
+            </record>
+        </data>
+</openerp>

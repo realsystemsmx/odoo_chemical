@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<openerp>
+    <data >
+<!--====================Defining the wizard View==================-->
+
+        <record id='risksticker_report_webkit_wizardform' model="ir.ui.view">
+            <field name="name">Risk Sticker</field>
+            <field name="model">riskstickerwebkitwizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Product Risk Sticker" >
+                    <group col="2" fill="0" height="500" states="choose">
+                        <separator string="Filter" colspan="4"/>
+                        <field name="product_id" required='1'/>
+                        <field name="lot_number" required='1' />
+                        <field name="to_date" required='1' />
+                        <field name="partner_id" required='1' />
+                        <field name="quantity" required='1' /> 
+                        <field name="sale_order" required='1' /> 
+                        <field name="partner_name" invisible="1" />
+<!--                        <field name="lot_id" required='1' domain="[('product_id','=',product_id)]"   /> -->
+                        <field name="brute" required='1' on_change="onchange_calculate_net(brute,tara)"/>
+                        <field name="tara" required='1' on_change="onchange_calculate_net(brute,tara)" />
+                        <field name="net"   />
+                        <field name="full_sticker"   />                                             
+<!--                        <field name="report_title" invisible="1" /> !-->
+                        <separator colspan="2"/>
+                        <group colspan="2">
+                            <button special="cancel" icon="gtk-cancel" string="Cancel"/>
+                            <button type="object" name="create_report" icon="gtk-go-forward" string="Print"/>
+                        </group>
+                        <field invisible="1" name="state"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+<!--====================Specifying the Action menu ========================-->
+
+        <record model="ir.actions.act_window" id="action_risksticker_report_webkit">
+            <field name="name">Product Risk Sticker</field>
+            <field name="res_model">riskstickerwebkitwizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+<!--====================Specifying the report menu ========================-->
+
+        <menuitem id="risksticker_report_webkit" name="Product Risk Sticker"
+                    action="action_risksticker_report_webkit"
+                    parent="base.menu_product"
+                    sequence="45"
+                     />
+
+<!--====================Specifying the Action menu GBW Custom ========================-->
+                     
+           <record model="ir.actions.act_window" id="action_label_product_report_webkit">
+            <field name="name">GBW Label Product</field>
+            <field name="res_model">riskstickerwebkitwizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+<!--====================Specifying the report menu ========================-->
+
+        <menuitem id="label_product_report_webkit" name="GBW Label Products"
+                    action="action_label_product_report_webkit"
+                    parent="gbwinvoice_report_webkit.menu_gbw_report"
+                    sequence="45"
+                     />
+                                       
+
+    </data>
+</openerp>
+
